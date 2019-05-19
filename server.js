@@ -1,14 +1,13 @@
+var path = require("path");
+
 var express = require("express");
-
 var app = express();
-
 var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 var exphbs = require ("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -35,10 +34,10 @@ connection.connect(function(err) {
 
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "app/public/home.html"));
 });
 app.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "survey.html"));
+  res.sendFile(path.join(__dirname, "app/public/survey.html"));
 });
 app.get("/api/friends", function(req, res) {
   connection.query("SELECT * FROM friends", function(err, data) {
