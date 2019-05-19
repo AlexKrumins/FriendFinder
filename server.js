@@ -48,9 +48,9 @@ app.get("/api/friends", function(req, res) {
   });
 });
 app.post("/api/friends", function(req, res) {
-  connection.query("INSERT INTO friends (friend) VALUES (?)", [req.body.friend], function(err, result) {
+  connection.query("INSERT INTO friends VALUES (?)", [req.body.friend, req.body.photo, req.body.scores], function(err, result) {
     if (err) {
-      return res.status(500).end();
+      return res.status(501).end();
     }
     // Send back the ID of the new friend
     res.json({ id: result.insertId });

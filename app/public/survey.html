@@ -4,7 +4,11 @@
 	<title>Survey</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- Link static CSS -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <!-- Link static CSS -->
 	<link rel="stylesheet" type="text/css" href="/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Baloo|Roboto" rel="stylesheet">
 </head>
@@ -12,7 +16,7 @@
 	<div class="container content">
 		<h1>Survey</h1>
 		<p>Take the survey to find your ideal friend!</p>
-		<form>
+		<form id=addNewFriend>
 			<div class="form-group">
 				<input id="name" type="text" class="form-control" placeholder="Name (Required)">
 			</div>
@@ -162,39 +166,37 @@
 		</div>
 	</footer>
 
-	<script
-	  src="https://code.jquery.com/jquery-3.2.1.min.js"
-	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	  crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
-</html>
 
-<script type="text/javascript">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript">
 	$("#submitBtn").on("click", function(event) {
-		event.preventDefault();
-		// Form validation
-		var valid = false;
+    event.preventDefault();
+    console.log("hoo")
+    // Form validation
+    var valid = false;
     if($("#name").val() !== ""
-      && $("#photo").val() !== "" 
-      && $("#question1").val() !== "empty" 
-      && $("#question2").val() !== "empty" 
-      && $("#question3").val() !== "empty" 
-      && $("#question4").val() !== "empty" 
-      && $("#question5").val() !== "empty" 
-      && $("#question6").val() !== "empty" 
-      && $("#question7").val() !== "empty" 
-      && $("#question8").val() !== "empty" 
-      && $("#question9").val() !== "empty" 
-      && $("#question10").val() !== "empty") {
-        valid = true
-      }
-		if(valid === true) {
-			var newFriend = {
-				name: $("#name").val().trim(),
+    && $("#photo").val() !== "" 
+    && $("#question1").val() !== "empty" 
+    && $("#question2").val() !== "empty" 
+    && $("#question3").val() !== "empty" 
+    && $("#question4").val() !== "empty" 
+    && $("#question5").val() !== "empty" 
+    && $("#question6").val() !== "empty" 
+    && $("#question7").val() !== "empty" 
+    && $("#question8").val() !== "empty" 
+    && $("#question9").val() !== "empty" 
+    && $("#question10").val() !== "empty") {
+      valid = true
+      console.log("ray")
+    };
+    if (valid === true){
+      console.log('sis') 
+      var newFriendEntry = {
+        name: $("#name").val().trim(),
 				photo: $("#photo").val().trim(),
 				scores: [
-					$("#question1").val(),
+          $("#question1").val(),
 					$("#question2").val(),
 					$("#question3").val(),
 					$("#question4").val(),
@@ -205,17 +207,23 @@
 					$("#question9").val(),
 					$("#question10").val()
 				]
-			};
-			var currentURL = window.location.origin;
-			// Ajax call for receiving response after POST req
-			$.post(currentURL + "/api/friends", newfriend, function(data) {
-				$("#bestFriend").text(data.name);
-				$("#bestFriendPhoto").attr("src", data.photo);
-				$("#bestFriendModal").modal("toggle");
-			});
+      };
+      console.log('boom')
+      $.ajax("/api/friends", {
+      type: "POST",
+      data: newFriendEntry
+    }).then(
+      function() {
+        console.log("bah");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    )
 		} else {
-			// If a required field is missing, show alert
+      // If a required field is missing, show alert
 			alert("Survey is incomplete!");
 		}
 	});
-</script>
+  </script>
+</body>
+</html>
