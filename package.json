@@ -1,0 +1,30 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "homework 14",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexKrumins/FriendFinder.git"
+  },
+  "keywords": [
+    "mysql",
+    "express",
+    "node"
+  ],
+  "author": "Alex Krumins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexKrumins/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/AlexKrumins/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "express-handlebars": "^3.1.0",
+    "mysql": "^2.17.1"
+  }
+}
