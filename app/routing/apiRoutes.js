@@ -1,6 +1,26 @@
 var friends = require("../data/friends");
 
 module.exports = function(app) {
+
+var express = require("express");
+var app = express();
+var connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "friends_db"
+});
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+  app.listen(PORT, function() {
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
+});
   app.get("/api/friends", function(req, res) {
     connection.query("SELECT * FROM friends", function(err, data) {
       if(err) {
