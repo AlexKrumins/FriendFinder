@@ -4,8 +4,8 @@ var connection = mysql.createConnection({
   host: "us-cdbr-iron-east-02.cleardb.net",
   port: 3306,
   user: "b5cc49ce32b600",
-  password: "9959467",
-  database: "friends_db"
+  password: "480566a2c06cf2b",
+  database: "heroku_bf0299f0896d543"
 });
 connection.connect(function(err) {
   if (err) {
@@ -25,7 +25,7 @@ app.get("/api/friends", function(req, res) {
   });
 });
 app.post("/api/friends", function(req, res, next) {
-  connection.query("INSERT INTO friends_db.friends (friend, photo, scores) VALUES (?,?,?)", [req.body.friend, req.body.photo,'['+req.body.scores+']'], function(err, result) {
+  connection.query("INSERT INTO heroku_bf0299f0896d543.friends (friend, photo, scores) VALUES (?,?,?)", [req.body.friend, req.body.photo,'['+req.body.scores+']'], function(err, result) {
     if (err) {
       return res.status(500).end();
     }
