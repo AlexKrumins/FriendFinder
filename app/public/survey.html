@@ -7,9 +7,10 @@
   <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-  <!-- Link static CSS -->
+	crossorigin="anonymous"></script>
+	
 	<link rel="stylesheet" type="text/css" href="/style.css">
+	
 	<link href="https://fonts.googleapis.com/css?family=Baloo|Roboto" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +37,7 @@
       </div>
       <div class="form-group">
 				<label for="question2">I dislike movies starring Sandra Bullock.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question2">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -47,7 +48,7 @@
       </div>
       <div class="form-group">
 				<label for="question3">I dislike vegans.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question3">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -58,7 +59,7 @@
       </div>
       <div class="form-group">
 				<label for="question4">I dislike crowded places.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question4">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -69,7 +70,7 @@
       </div>
       <div class="form-group">
 				<label for="question5">I dislike cooking at home.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question5">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -80,7 +81,7 @@
       </div>
       <div class="form-group">
 				<label for="question6">I dislike spicy food.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question6">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -91,7 +92,7 @@
       </div>
       <div class="form-group">
 				<label for="question7">I dislike participating in events of athleticism.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question7">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -102,7 +103,7 @@
       </div>
       <div class="form-group">
 				<label for="question8">I dislike travelling away from home.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question8">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -113,7 +114,7 @@
       </div>
       <div class="form-group">
 				<label for="question9">I dislike rising early in the morning.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question9">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -124,7 +125,7 @@
       </div>
       <div class="form-group">
 				<label for="question10">I dislike moustaches.</label>
-				<select class="form-control" id="question1">
+				<select class="form-control" id="question10">
 					<option value="empty"></option>
 					<option value="1">1 - Strongly Disagree</option>
 					<option value="2">2 - Disagree Somewhat</option>
@@ -193,23 +194,25 @@
     if (valid === true){
       console.log('sis') 
       var newFriendEntry = {
-        name: $("#name").val().trim(),
+				friend: $("#name").val().trim(),
 				photo: $("#photo").val().trim(),
-				scores: [
-          $("#question1").val(),
-					$("#question2").val(),
-					$("#question3").val(),
-					$("#question4").val(),
-					$("#question5").val(),
-					$("#question6").val(),
-					$("#question7").val(),
-					$("#question8").val(),
-					$("#question9").val(),
-					$("#question10").val()
-				]
-      };
-      console.log('boom')
-      $.ajax("/api/friends", {
+				scores: [$("#question1").val(),
+				$("#question2").val(),
+				$("#question3").val(),
+				$("#question4").val(),
+				$("#question5").val(),
+				$("#question6").val(),
+				$("#question7").val(),
+				$("#question8").val(),
+				$("#question9").val(),
+				$("#question10").val()]
+			};
+			console.log('boom')
+			
+			var currentURL = window.location.origin;
+			
+			
+      $.ajax(currentURL + "/api/friends", {
       type: "POST",
       data: newFriendEntry
     }).then(
