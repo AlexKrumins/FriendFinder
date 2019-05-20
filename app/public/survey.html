@@ -207,19 +207,14 @@
 				$("#question9").val(),
 				$("#question10").val()]
 			};
-			console.log('boom')
-			
-			var currentURL = window.location.origin;
-			
 			
       $.ajax("/api/friends", {
       type: "POST",
       data: newFriendEntry
     }).then(
       function() {
-        console.log("bah");
         // Reload the page to get the updated list
-        window.reload();
+        location.reload();
       }
     )
 		} else {
