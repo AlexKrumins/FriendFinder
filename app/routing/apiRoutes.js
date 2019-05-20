@@ -25,7 +25,7 @@ app.get("/api/friends", function(req, res) {
   });
 });
 app.post("/api/friends", function(req, res, next) {
-  connection.query("INSERT INTO heroku_bf0299f0896d543.friends (friend, photo, scores) VALUES (?,?,?)", [req.body.friend, req.body.photo,'['+req.body.scores+']'], function(err, result) {
+  connection.query("INSERT INTO friends (friend, photo, scores) VALUES (?,?,?)", [req.body.friend, req.body.photo,'['+req.body.scores+']'], function(err, result) {
     if (err) {
       return res.status(500).end();
     }
