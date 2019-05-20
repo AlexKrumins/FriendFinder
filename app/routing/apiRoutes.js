@@ -26,13 +26,13 @@ app.get("/api/friends", function(req, res) {
 });
 app.post("/api/friends", function(req, res) {
   console.log(req.body.scores)
-  // connection.query("INSERT INTO friends (friend, photo, scores) VALUES (?)", [req.body.friend, req.body.photo, req.body.scores], function(err, result) {
-  //   if (err) {
-  //     return res.status(501).end();
-  //   }
-  //   // Send back the ID of the new friend
-  //   res.json({ id: result.insertId });
-  //   console.log({ id: result.insertId });
-  // });
+  connection.query("INSERT INTO friends_db.friends (friend, photo, scores) VALUES (?,?,?)", [req.body.friend, req.body.photo,'['+req.body.scores+']'], function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+    // Send back the ID of the new friend
+    res.json({ id: result.insertId });
+    console.log({ id: result.insertId });
+  });
 });
 };

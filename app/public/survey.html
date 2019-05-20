@@ -134,10 +134,10 @@
 					<option value="5">5 - Strongly Agree</option>
 				</select>
 			</div>
+			<div class="text-center">
+				<button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+			</div>
 		</form>
-		<div class="text-center">
-			<button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
-		</div>
 		
 		<!-- Modal after survey completion -->
 		<div id="bestFriendModal" class="modal fade" role="dialog">
@@ -212,14 +212,14 @@
 			var currentURL = window.location.origin;
 			
 			
-      $.ajax(currentURL + "/api/friends", {
+      $.ajax("/api/friends", {
       type: "POST",
       data: newFriendEntry
     }).then(
       function() {
         console.log("bah");
         // Reload the page to get the updated list
-        location.reload();
+        window.reload();
       }
     )
 		} else {
