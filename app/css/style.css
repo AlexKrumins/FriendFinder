@@ -1,0 +1,47 @@
+body {
+	font-family: sans-serif;
+	background: rgb(207, 240, 255);
+}
+
+.site {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.content {
+	flex: 1;
+}
+
+h1 {
+	font-family: cursive;
+	text-align: center;
+	margin-top: 75px;
+	margin-bottom: 20px;
+}
+
+p {
+	text-align: center;
+	max-width: 55%;
+	line-height: 1.8;
+	margin: auto;
+}
+
+footer {
+	text-align: right;
+	background: rgb(241, 84, 84);
+	padding: 40px;
+}
+
+.btn {
+	margin: 20px;
+}
+
+form {
+	margin-top: 20px;
+}
+
+a {
+	color: #5c6ab8;
+	font-size: 20px;
+}
