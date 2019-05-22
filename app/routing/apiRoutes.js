@@ -1,12 +1,19 @@
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
-  host: "us-cdbr-iron-east-02.cleardb.net",
+  host: "localhost",
   port: 3306,
-  user: "b5cc49ce32b600",
-  password: "480566a2c06cf2b",
+  user: "root",
+  password: "",
   database: "heroku_bf0299f0896d543"
 });
+// var connection = mysql.createConnection({
+//   host: "us-cdbr-iron-east-02.cleardb.net",
+//   port: 3306,
+//   user: "b5cc49ce32b600",
+//   password: "480566a2c06cf2b",
+//   database: "heroku_bf0299f0896d543"
+// });
 connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
