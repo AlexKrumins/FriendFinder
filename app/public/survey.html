@@ -140,7 +140,7 @@
 		</form>
 		
 		<!-- Modal after survey completion -->
-		<!-- <div id="bestFriendModal" class="modal fade" role="dialog">
+		<div id="bestFriendModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -157,7 +157,7 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 	<footer>
 		<div class="container">
@@ -208,15 +208,16 @@
 				$("#question10").val()]
 			};
 			
-      $.ajax("/api/friends", {
-      type: "POST",
-      data: newFriendEntry
-    }).then(
-      function() {
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    )
+			var currentURL = window.location.origin;
+
+			// Call for receiving response after POST req
+			$.post(currentURL + "/api/friends", newFriendEntry, function(data) {
+				var bestFriend = data;
+				console.log(bestFriend);
+				$("#bestFriend").text("Hi, my name is " + data.friend);
+				$("#bestFriendPhoto").attr("src", data.photo);
+				$("#bestFriendModal").modal("toggle");
+			});
 		} else {
       // If a required field is missing, show alert
 			alert("Survey is incomplete!");
